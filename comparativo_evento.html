@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comparativo — Plataformas de Ingresso & Desconto para Associados</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #F4F6F9;
+    color: #1A1A2E;
+    padding: 40px 24px;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ── Header ── */
+  .page-header {
+    background: linear-gradient(135deg, #1E2A3A 0%, #2D4A6B 100%);
+    border-radius: 12px;
+    padding: 36px 40px;
+    margin-bottom: 36px;
+    color: #fff;
+  }
+  .page-header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    margin-bottom: 6px;
+  }
+  .page-header p {
+    font-size: 13px;
+    color: #A8BDD4;
+  }
+  .badge-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+  .badge {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  /* ── Seção ── */
+  .section {
+    margin-bottom: 44px;
+  }
+  .section-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #2D4A6B;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #CBD5E0;
+  }
+
+  /* ── Tabela ── */
+  .table-wrap {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  thead th {
+    background: #2D4A6B;
+    color: #fff;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 13px 14px;
+    text-align: left;
+    white-space: nowrap;
+  }
+  thead th:first-child { border-radius: 0; }
+  tbody tr { border-bottom: 1px solid #EDF2F7; }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:nth-child(even) td { background: #F7FAFC; }
+  tbody tr:hover td { background: #EBF4FF; transition: background 0.15s; }
+  td {
+    padding: 13px 14px;
+    vertical-align: top;
+    line-height: 1.55;
+  }
+  td.name {
+    font-weight: 700;
+    color: #1A1A2E;
+    white-space: nowrap;
+  }
+  td ul {
+    padding-left: 14px;
+    margin: 0;
+  }
+  td ul li { margin-bottom: 2px; }
+
+  /* ── Badges de status ── */
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .tag-green  { background: #D5F5E3; color: #1A6B35; }
+  .tag-yellow { background: #FEF9E7; color: #7D6608; }
+  .tag-red    { background: #FADBD8; color: #922B21; }
+  .tag-blue   { background: #D6EAF8; color: #154360; }
+  .tag-gray   { background: #EAECEE; color: #555; }
+
+  .rec-yes  { color: #1A6B35; font-weight: 700; }
+  .rec-warn { color: #784212; }
+  .rec-alt  { color: #154360; font-weight: 700; }
+
+  /* ── Highlight row ── */
+  tr.highlight td { background: #EBF8FF !important; }
+
+  /* ── Rodapé ── */
+  .footnote {
+    font-size: 11px;
+    color: #888;
+    margin-top: 10px;
+    padding: 0 4px;
+  }
+
+  /* ── Legenda ── */
+  .legend {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: #555;
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: #F7FAFC;
+    border-radius: 8px;
+  }
+  .legend span { display: flex; align-items: center; gap: 5px; }
+
+  /* ── Recomendação box ── */
+  .rec-box {
+    background: linear-gradient(135deg, #1E2A3A 0%, #2D4A6B 100%);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-top: 14px;
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(45, 74, 107, 0.35);
+    position: relative;
+    overflow: hidden;
+  }
+  .rec-box::before {
+    content: '⭐';
+    position: absolute;
+    right: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 72px;
+    opacity: 0.08;
+  }
+  .rec-box .rec-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #A8BDD4;
+    margin-bottom: 8px;
+  }
+  .rec-box h2 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 18px;
+  }
+  .rec-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .rec-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 12px 16px;
+  }
+  .rec-item-icon {
+    font-size: 20px;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .rec-item-body { font-size: 13px; line-height: 1.55; }
+  .rec-item-body strong { color: #7DD3FC; display: block; margin-bottom: 2px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.4px; }
+  .rec-item-body span { color: #E2EBF4; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="page-header">
+    <h1>Planejamento de Evento — Venda de Ingressos</h1>
+    <p>Comparativo de plataformas e estratégias de desconto para associados</p>
+    <div class="badge-row">
+      <span class="badge">📍 Presencial</span>
+      <span class="badge">👥 200–300 pessoas</span>
+      <span class="badge">🎫 Ingressos pagos</span>
+      <span class="badge">🔖 Desconto para associados</span>
+    </div>
+  </div>
+
+  <!-- Seção 1: Plataformas -->
+  <div class="section">
+    <div class="section-title">1. Plataformas de venda de ingressos</div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Plataforma</th>
+            <th>Taxa / Custo</th>
+            <th>Destaque</th>
+            <th>Vantagens</th>
+            <th>Desvantagens</th>
+            <th>Desconto Associado</th>
+            <th>Recomendação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight">
+            <td class="name">Sympla</td>
+            <td>~10% sobre<br>ingressos pagos</td>
+            <td><span class="tag tag-yellow">⭐ Líder Brasil</span></td>
+            <td><ul>
+              <li>Pix, boleto e cartão</li>
+              <li>App de check-in gratuito</li>
+              <li>Múltiplos lotes e tipos</li>
+              <li>Cupons de desconto</li>
+              <li>Relatórios em tempo real</li>
+              <li>Suporte em português</li>
+            </ul></td>
+            <td><ul>
+              <li>Taxa alta para ingressos caros</li>
+              <li>Sem validação de CPF nativa</li>
+            </ul></td>
+            <td>Cupom único ou<br>cupons individuais</td>
+            <td class="rec-yes">✅ Recomendado<br>para este evento</td>
+          </tr>
+          <tr>
+            <td class="name">Ticket Tailor</td>
+            <td>~R$ 3,50<br>por ingresso<br><em>(taxa fixa)</em></td>
+            <td><span class="tag tag-green">💰 Melhor custo<br>p/ ingressos caros</span></td>
+            <td><ul>
+              <li>Taxa fixa (não percentual)</li>
+              <li>Cupons individuais em massa</li>
+              <li>Check-in por QR Code</li>
+              <li>Sem taxa para gratuitos</li>
+            </ul></td>
+            <td><ul>
+              <li>Interface em inglês</li>
+              <li>Pagamento via Stripe</li>
+              <li>Menos conhecido no Brasil</li>
+            </ul></td>
+            <td>Cupons individuais<br>por associado</td>
+            <td class="rec-alt">✅ Válido se ingresso<br>acima de R$ 35</td>
+          </tr>
+          <tr>
+            <td class="name">Ingresse</td>
+            <td>Taxa variável<br><em>(negociada)</em></td>
+            <td><span class="tag tag-blue">🎭 Foco em<br>entretenimento BR</span></td>
+            <td><ul>
+              <li>Solução nacional</li>
+              <li>Validação por CPF disponível</li>
+              <li>Check-in robusto</li>
+            </ul></td>
+            <td><ul>
+              <li>Contratação mais longa</li>
+              <li>Menos self-service</li>
+              <li>Pode exigir volume mínimo</li>
+            </ul></td>
+            <td>✅ Valida CPF<br>contra lista</td>
+            <td class="rec-alt">⭐ Melhor se CPF<br>for obrigatório</td>
+          </tr>
+          <tr>
+            <td class="name">Eventbrite</td>
+            <td>~3,5% + R$ 1<br>por ingresso</td>
+            <td><span class="tag tag-gray">🌍 Internacional</span></td>
+            <td><ul>
+              <li>Marca reconhecida</li>
+              <li>Boa UX para o comprador</li>
+              <li>Integrações diversas</li>
+            </ul></td>
+            <td><ul>
+              <li>Suporte fraco no Brasil</li>
+              <li>Sem Pix nativo</li>
+              <li>Voltado para inglês</li>
+            </ul></td>
+            <td>Cupom de desconto</td>
+            <td class="rec-warn">⚠️ Só se público<br>for internacional</td>
+          </tr>
+          <tr>
+            <td class="name">Hotmart</td>
+            <td>~9,9% + R$ 1<br>por ingresso</td>
+            <td><span class="tag tag-gray">📱 Forte em online</span></td>
+            <td><ul>
+              <li>Ecossistema completo BR</li>
+              <li>Bom para evento híbrido</li>
+              <li>Afiliados e comissões</li>
+            </ul></td>
+            <td><ul>
+              <li>Focado em digital/online</li>
+              <li>Check-in presencial menos robusto</li>
+            </ul></td>
+            <td>Campo CPF +<br>validação manual</td>
+            <td class="rec-warn">⚠️ Não ideal para<br>100% presencial</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="footnote">⚠️ Taxas aproximadas — verifique os valores atualizados em cada plataforma antes de contratar.</p>
+  </div>
+
+  <!-- Seção 2: Desconto associados -->
+  <div class="section">
+    <div class="section-title">2. Opções de desconto para associados</div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Método</th>
+            <th>Plataforma(s)</th>
+            <th>Custo extra</th>
+            <th>Segurança</th>
+            <th>Complexidade</th>
+            <th>Vantagens</th>
+            <th>Desvantagens</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="name">Cupom único<br>compartilhado</td>
+            <td>Sympla<br>Ticket Tailor<br>Eventbrite</td>
+            <td><span class="tag tag-green">Grátis</span></td>
+            <td><span class="tag tag-red">🔴 Baixa</span></td>
+            <td><span class="tag tag-green">🟢 Simples</span></td>
+            <td><ul>
+              <li>Pronto em minutos</li>
+              <li>Associado compra sozinho</li>
+            </ul></td>
+            <td><ul>
+              <li>Código pode vazar</li>
+              <li>Sem rastreamento individual</li>
+            </ul></td>
+          </tr>
+          <tr class="highlight">
+            <td class="name">Cupons individuais<br><small>(1 por associado)</small></td>
+            <td>Sympla<br>Ticket Tailor</td>
+            <td><span class="tag tag-green">Grátis</span></td>
+            <td><span class="tag tag-yellow">🟡 Média</span></td>
+            <td><span class="tag tag-yellow">🟡 Moderada</span></td>
+            <td><ul>
+              <li>Código único por pessoa</li>
+              <li>Rastreável quem usou</li>
+              <li>Pode desativar individualmente</li>
+            </ul></td>
+            <td><ul>
+              <li>Precisa gerar e enviar lista</li>
+              <li>Associado pode repassar</li>
+            </ul></td>
+          </tr>
+          <tr>
+            <td class="name">Link de ingresso<br>privado (oculto)</td>
+            <td>Sympla<br>Ticket Tailor</td>
+            <td><span class="tag tag-green">Grátis</span></td>
+            <td><span class="tag tag-yellow">🟡 Média</span></td>
+            <td><span class="tag tag-green">🟢 Simples</span></td>
+            <td><ul>
+              <li>Não aparece publicamente</li>
+              <li>Fácil de enviar por WhatsApp</li>
+            </ul></td>
+            <td><ul>
+              <li>Link pode circular</li>
+              <li>Sem controle individual</li>
+            </ul></td>
+          </tr>
+          <tr>
+            <td class="name">Validação por CPF<br><small>(lista nativa)</small></td>
+            <td>Ingresse<br><em>(sob consulta)</em></td>
+            <td><span class="tag tag-gray">Incluso</span></td>
+            <td><span class="tag tag-green">🟢 Alta</span></td>
+            <td><span class="tag tag-red">🔴 Alta</span></td>
+            <td><ul>
+              <li>Só o CPF cadastrado compra</li>
+              <li>100% automatizado</li>
+              <li>Mais profissional</li>
+            </ul></td>
+            <td><ul>
+              <li>Contratação mais longa</li>
+              <li>Menos flexível</li>
+            </ul></td>
+          </tr>
+          <tr>
+            <td class="name">Campo CPF +<br>validação manual</td>
+            <td>Hotmart<br>Eventbrite</td>
+            <td><span class="tag tag-green">Grátis</span></td>
+            <td><span class="tag tag-yellow">🟡 Média</span></td>
+            <td><span class="tag tag-red">🔴 Alta</span></td>
+            <td><ul>
+              <li>Coleta CPF no checkout</li>
+              <li>Sem custo adicional</li>
+            </ul></td>
+            <td><ul>
+              <li>Revisão manual por compra</li>
+              <li>Comprador espera aprovação</li>
+            </ul></td>
+          </tr>
+          <tr>
+            <td class="name">Página própria +<br>integração custom</td>
+            <td>Qualquer API<br>(ex: Stripe)</td>
+            <td><span class="tag tag-red">Custo dev</span></td>
+            <td><span class="tag tag-green">🟢 Alta</span></td>
+            <td><span class="tag tag-red">🔴 Muito Alta</span></td>
+            <td><ul>
+              <li>Controle total do fluxo</li>
+              <li>Valida CPF em tempo real</li>
+            </ul></td>
+            <td><ul>
+              <li>Custo e tempo de dev</li>
+              <li>Exagero para evento único</li>
+            </ul></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="legend">
+      <span>Segurança/Complexidade:</span>
+      <span><span class="tag tag-green">🟢 Favorável</span></span>
+      <span><span class="tag tag-yellow">🟡 Neutro / Médio</span></span>
+      <span><span class="tag tag-red">🔴 Desfavorável</span></span>
+    </div>
+  </div>
+
+  <!-- Recomendação final -->
+  <div class="rec-box">
+    <div class="rec-label">Recomendação final</div>
+    <h2>O que fazer para este evento</h2>
+    <div class="rec-items">
+      <div class="rec-item">
+        <div class="rec-item-icon">🎫</div>
+        <div class="rec-item-body">
+          <strong>Plataforma</strong>
+          <span><b style="color:#fff">Sympla</b> — líder no Brasil, check-in por app, Pix integrado, múltiplos lotes e suporte em português.</span>
+        </div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-item-icon">🔖</div>
+        <div class="rec-item-body">
+          <strong>Desconto para associados</strong>
+          <span><b style="color:#fff">Cupons individuais</b> na Sympla — grátis, rastreável e sem custo extra. Se validação por CPF for obrigatória, use o <b style="color:#fff">Ingresse</b>.</span>
+        </div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-item-icon">💰</div>
+        <div class="rec-item-body">
+          <strong>Break-even de taxa</strong>
+          <span>Se o ingresso ultrapassar <b style="color:#fff">R$ 35</b>, o Ticket Tailor (taxa fixa ~R$ 3,50) sai mais barato que a Sympla (10% por ingresso).</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
